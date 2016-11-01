@@ -16,6 +16,9 @@ mkdir $CHECKOUT_PATH/php.net
 
 # Checkout my php fork, what I normally use to work
 git clone git@github.com:auroraeosrose/php-src.git $CHECKOUT_PATH/github.com/php/php-src
+cd $CHECKOUT_PATH/github.com/php/php-src
+git remote add upstream https://github.com/php/php-src.git
+git fetch upstream
 
 # checkout my personal stuff - no windows stuff here though
 git clone git@github.com:auroraeosrose/php-extensions-code.git $CHECKOUT_PATH/github.com/auroraeosrose/php-extensions-code
