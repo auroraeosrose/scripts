@@ -14,3 +14,12 @@ Some notes:
 5. This will blow up if you don't have permission to install PHP wherever it is you want to put it (/usr/local for example)
 6. Read the comments, I try to make important stuff configurable via env variables to save hassle and make things as automated as possible
 7. You'll need git, bison, re2c, and libraries to build PHP, this doesn't install software, just checks out code and builds using tools you should already have
+
+After everything is built, you can build and test multiple versions of your extension with phpize.sh
+
+set ONLY_5=1 if you want to test only php 5.6
+set ONLY_7=1 if you want to test only php 7.0+
+
+you can set EXT_SOURCE to the location of your source, or run the script from your source (it assumes . if not supplied)
+
+You can also set your PHP_BIN_ROOT if you've put the php compiles somewhere else
