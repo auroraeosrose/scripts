@@ -1,14 +1,14 @@
 #!/bin/sh
 
-# This will build and test 4 versions of PHP in each branch checked out
+# This will build and test multiple versions of PHP
 # that's a lot of work and can literally take hours, hurray for automation
 
-# this expects the file layout from checkout.sh  you may need to tinker for custom stuff
+# this expects my file layout
 
 # this is where you're sticking the PHP binaries
 [ -z $PHP_BIN_ROOT ] && PHP_BIN_ROOT=/usr/local/php
 # this is the parent dir for your git checkouts
-[ -z $PHP_SOURCE ] && PHP_SOURCE=.
+[ -z $PHP_SOURCE ] && PHP_SOURCE=/home/auroraeosrose/Documents/Code/github.com/php
 # if you want to add something to all the PHP configurations do it here
 [ -z $PHP_ADDL_CONFIG ] && PHP_ADDL_CONFIG=
 
@@ -26,11 +26,11 @@ export NO_INTERACTION=1
 # You can fiddle with the list of available PHP's if you want
 # This would be more elegant with bash 4 but alas ... there is centos (grumble)
 
-for version in "php-master" "php-5.6" "php-5.5" "php-5.4" "php-5.3" "php-5.2"
+for version in "master" "php-7.1" "php-7.0" "php-5.6"
 do
     cd $PHP_SOURCE/$version
 
-    if [ $version = "php-5.2" ]; then
+    if [ $version = "php-5.6" ]; then
         PATH=$OLD_BISON:$PATH
     fi
 
