@@ -15,11 +15,13 @@ echo "Updating PHP Canonical source"
 
 for version in "master:master" "PHP-7.1:php-7.1" "PHP-7.0:php-7.0" "PHP-5.6:php-5.6"
 do
-    BRANCH=${version%%:*}
-    DIRNAME=${version#*:}
-    cd $CHECKOUT_PATH/$DIRNAME
-    git reset --hard
-    git pull origin $BRANCH
+   BRANCH=${version%%:*}
+   DIRNAME=${version#*:}
+
+   cd $CHECKOUT_PATH/$DIRNAME
+
+   git reset --hard
+   git pull origin $BRANCH
 done
 
 # you can use env variables to set checkout_path new_workdir and git_url
@@ -35,13 +37,11 @@ for version in "master:master" "PHP-7.1:php-7.1" "PHP-7.0:php-7.0" "PHP-5.6:php-
 do
     BRANCH=${version%%:*}
     DIRNAME=${version#*:}
+
     cd $CHECKOUT_PATH/$DIRNAME
 
-    git reset --hard
-    git pull upstream $BRANCH
+    git reset --hard upstream/$BRANCH
     git pull origin $BRANCH
+    git pull upstream $BRANCH
     git push
 done
-
-git remote add upstream https://github.com/php/php-src.git
-git fetch upstream

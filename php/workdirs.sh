@@ -20,13 +20,17 @@ echo "Creating new workdirs"
 # You can fiddle with the list of available PHP's if you want
 # This would be more elegant with bash 4 but alas ... there is centos (grumble)
 
+cd $CHECKOUT_PATH/php-src
 for version in "master:master" "PHP-7.1:php-7.1" "PHP-7.0:php-7.0" "PHP-5.6:php-5.6"
 do
     BRANCH=${version%%:*}
     DIRNAME=${version#*:}
     echo "Creating workdir in $DIRNAME for $BRANCH"
+    git checkout -b $BRANCH origin/$BRANCH
     bash $NEW_WORKDIR $CHECKOUT_PATH/php-src $CHECKOUT_PATH/$DIRNAME $BRANCH
 done
+
+git checkout master
 
 # you can use env variables to set checkout_path new_workdir and git_url
 # CHECKOUT_PATH variable is directory where we are putting the repos, defaults to ./
