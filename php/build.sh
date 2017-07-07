@@ -12,9 +12,6 @@
 # if you want to add something to all the PHP configurations do it here
 [ -z $PHP_ADDL_CONFIG ] && PHP_ADDL_CONFIG=
 
-# I have mine in /usr/local/bison
-[ -z $OLD_BISON ] && OLD_BISON=/usr/local/bison/bin
-
 # these are the configure flags for each type
 PHP_ZTS_DEBUG="--enable-debug --enable-maintainer-zts"
 PHP_ZTS="--enable-maintainer-zts"
@@ -23,22 +20,17 @@ PHP_DEBUG="--enable-debug"
 # this makes it automated instead of waiting for you after a test run
 export NO_INTERACTION=1
 
-# You can fiddle with the list of available PHP's if you want
-# This would be more elegant with bash 4 but alas ... there is centos (grumble)
+# Reduced down to just 7.1 plus - at this point I don't care about older stuff
 
-for version in "master" "php-7.1" "php-7.0" "php-5.6"
+for version in "php-src" "php-7.1"
 do
     cd $PHP_SOURCE/$version
-
-    if [ $version = "php-5.6" ]; then
-        PATH=$OLD_BISON:$PATH
-    fi
 
     make clean
     make distclean
     ./buildconf --force
 
-    for type in -zts-debug -zts -debug ''
+    for type in -lcov -zts-debug -zts -debug ''
     do
         PRE="--without-pear --prefix=$PHP_BIN_ROOT/$version$type"
 
@@ -48,6 +40,8 @@ do
             CONFIG="$PRE $PHP_ZTS $PHP_ADDL_CONFIG"
         elif [ $type = "-debug" ]; then
             CONFIG="$PRE $PHP_DEBUG $PHP_ADDL_CONFIG"
+        elif [ $type = "-lcov" ]; then
+            CONFIG="$PRE $PHP_DEBUG --enable-gcov $PHP_ADDL_CONFIG"
         else
             CONFIG="$PRE $PHP_ADDL_CONFIG"
         fi
