@@ -32,3 +32,8 @@ git clone git@github.com:gtkforphp/generator.git $CHECKOUT_PATH/github.com/gtkfo
 # checkout for eosforphp stuff
 git clone git@github.com:eosforphp/structures.git $CHECKOUT_PATH/github.com/eosforphp/structures
 git clone git@github.com:eosforphp/eosforphp.github.io.git $CHECKOUT_PATH/github.com/eosforphp/eosforphp.github.io
+
+# run worktree.sh on my PHP checkout
+export CHECKOUT_PATH=/home/auroraeosrose/Documents/Code/github.com/php
+
+/home/auroraeosrose/Documents/Code/github.com/auroraeosrose/scripts/php/worktree.sh

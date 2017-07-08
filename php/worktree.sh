@@ -6,7 +6,7 @@
 # The following script will set up worktrees for both my php.net checkouts for current php versions
 echo "Setting up worktrees"
 
-[ -z $CHECKOUT_PATH ] && CHECKOUT_PATH=/home/auroraeosrose/Documents/Code/github.com/php
+[ -z $CHECKOUT_PATH ] && CHECKOUT_PATH=./
 
 cd $CHECKOUT_PATH/php-src
 

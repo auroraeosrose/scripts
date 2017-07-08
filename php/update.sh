@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CHECKOUT_PATH=/home/auroraeosrose/Documents/Code/github.com/php
+[ -z $CHECKOUT_PATH ] && CHECKOUT_PATH=./
 
 echo "Updating PHP fork source"
 
